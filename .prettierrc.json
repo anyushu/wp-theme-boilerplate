@@ -1,0 +1,15 @@
+{
+  "semi": false,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files": "*.php",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}

@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "author": "anyushu",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,php,css}'"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.18.3",
+    "prettier": "^2.6.0"
+  }
 }
