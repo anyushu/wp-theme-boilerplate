@@ -7,7 +7,9 @@ $locations = get_nav_menu_locations();
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-center sm:justify-between h-16">
                 <div class="flex-shrink-0 flex items-center">
-                    <h1><?php bloginfo('name'); ?></h1>
+                    <h1>
+                        <a href="<?php echo home_url(); ?>"><?php bloginfo( 'name' ); ?></a>
+                    </h1>
                 </div>
                 <?php if (isset($locations['header-menu'])) : ?>
                     <div class="hidden sm:block sm:ml-6">
@@ -22,9 +24,7 @@ $locations = get_nav_menu_locations();
                                 $title = $item->title;
                                 $url = $item->url;
                             ?>
-                                <a href="<?php echo $url; ?>" class="<?php echo $class_str; ?>">
-                                    <?php echo $title; ?>
-                                </a>
+                                <a href="<?php echo $url; ?>" class="<?php echo $class_str; ?>"><?php echo $title; ?></a>
                             <?php endforeach; ?>
                         </div>
                     </div>
