@@ -60,15 +60,6 @@ function remove_adminbar_item($wp_admin_bar)
 }
 add_action('admin_bar_menu', 'remove_adminbar_item', 999);
 
-// 標準のjquery消去
-function my_delete_local_jquery()
-{
-    if (!is_admin() && !is_user_logged_in()) {
-        wp_deregister_script('jquery');
-    }
-}
-add_action('wp_enqueue_scripts', 'my_delete_local_jquery');
-
 // ウィジェット登録
 function arphabet_widgets_init()
 {
@@ -89,3 +80,39 @@ function register_my_menu()
     register_nav_menu('header-menu', __('ヘッダーメニュー'));
 }
 add_action('init', 'register_my_menu');
+
+// load css
+function my_template_css()
+{
+    wp_enqueue_style('main-style', get_stylesheet_uri());
+    wp_enqueue_style(
+        'app-style',
+        get_theme_file_uri('dist/css/app.css'),
+        [],
+        filemtime(get_theme_file_path('dist/css/app.css')),
+    );
+}
+add_action('wp_enqueue_scripts', 'my_template_css');
+
+// load js
+function add_my_scripts()
+{
+
+    wp_deregister_script('jquery');
+    wp_enqueue_script(
+        'jquery',
+        'https://code.jquery.com/jquery-3.6.0.min.js',
+        [],
+        '3.6.0',
+        true
+    );
+
+    wp_enqueue_script(
+        'app-script',
+        get_theme_file_uri('dist/js/app.js'),
+        [],
+        filemtime(get_theme_file_path('dist/js/app.js')),
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'add_my_scripts');
