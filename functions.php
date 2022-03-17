@@ -115,3 +115,13 @@ function add_my_scripts()
     );
 }
 add_action('wp_enqueue_scripts', 'add_my_scripts');
+
+// ユーザーID取得を防ぐためのリダイレクト
+function shut_author_query()
+{
+    if (preg_match('/author=([0-9]*)/i', $_SERVER['QUERY_STRING'])) {
+        wp_redirect(home_url());
+        exit;
+    }
+}
+add_action('init', 'shut_author_query');
