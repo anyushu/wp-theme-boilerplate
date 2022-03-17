@@ -84,6 +84,12 @@ add_action('init', 'register_my_menu');
 // load css
 function my_template_css()
 {
+    wp_enqueue_style(
+        'google-fonts',
+        'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap',
+        [],
+        '1.0.0',
+    );
     wp_enqueue_style('main-style', get_stylesheet_uri());
     wp_enqueue_style(
         'app-style',
