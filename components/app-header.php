@@ -7,7 +7,7 @@ $locations = get_nav_menu_locations();
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-center sm:justify-between h-16">
                 <div class="flex-shrink-0 flex items-center">
-                    <h1>Logo</h1>
+                    <h1><?php bloginfo('name'); ?></h1>
                 </div>
                 <?php if (isset($locations['header-menu'])) : ?>
                     <div class="hidden sm:block sm:ml-6">
