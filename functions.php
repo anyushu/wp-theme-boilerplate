@@ -75,15 +75,7 @@ add_filter('document_title_separator', 'custom_title_separator');
  */
 function remove_adminbar_item(object $wp_admin_bar)
 {
-    if (!is_admin()) {
-        $wp_admin_bar->remove_node('wp-logo');
-        $wp_admin_bar->remove_node('new-content');
-        $wp_admin_bar->remove_node('comments');
-        $wp_admin_bar->remove_node('appearance');
-        $wp_admin_bar->remove_node('updates');
-        $wp_admin_bar->remove_node('search');
-        $wp_admin_bar->remove_node('customize');
-    }
+    $wp_admin_bar->remove_node('wp-logo');
 }
 add_action('admin_bar_menu', 'remove_adminbar_item', 999);
 
