@@ -1,52 +1,79 @@
 <?php
 
-// アイキャッチ設定
-add_theme_support('post-thumbnails');
+/**
+ * theme setup
+ *
+ * @return void
+ */
+function custom_theme_setup()
+{
+    add_theme_support('post-thumbnails');
+    add_theme_support('automatic-feed-links');
+    add_theme_support('title-tag');
+}
+add_action('after_setup_theme', 'custom_theme_setup');
 
-// html5許可
-add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
+/**
+ * remove_action for wp_head
+ *
+ * @return void
+ */
+function custom_wp_head_remove_action()
+{
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
+}
+add_action('wp_head', 'custom_wp_head_remove_action');
 
-// RSS用リンク出力
-add_theme_support('automatic-feed-links');
+/**
+ * remove_action for template_redirect
+ *
+ * @return void
+ */
+function custom_template_redirect_remove_action()
+{
+    remove_action('template_redirect', 'rest_output_link_header', 11);
+}
+add_action('template_redirect', 'custom_template_redirect_remove_action');
 
-// oembed消去
-remove_action('wp_head', 'rest_output_link_wp_head');
-remove_action('wp_head', 'wp_oembed_add_discovery_links');
-remove_action('wp_head', 'wp_oembed_add_host_js');
+/**
+ * remove_action for wp_print_styles
+ *
+ * @return void
+ */
+function custom_wp_print_styles_remove_action()
+{
+    remove_action('wp_print_styles', 'print_emoji_styles');
+}
+add_action('wp_print_styles', 'custom_wp_print_styles_remove_action');
 
-// wp-json消去
-remove_action('template_redirect', 'rest_output_link_header', 11);
-
-// 絵文字消去
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_print_styles', 'print_emoji_styles');
-
-// 外部投稿ツール消去
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wlwmanifest_link');
-
-// meta generator消去
-remove_action('wp_head', 'wp_generator');
-
-// 短縮URL消去
-remove_action('wp_head', 'wp_shortlink_wp_head');
-
-// 次の記事消去
-remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
-
-// タイトルタグ追加
-add_theme_support('title-tag');
-
-// タイトルタグセパレーター変更
-function title_separator($sep)
+/**
+ * custom title separator
+ *
+ * @param string $sep
+ * @return void
+ */
+function custom_title_separator(string $sep)
 {
     $sep = ' | ';
     return $sep;
 }
-add_filter('document_title_separator', 'title_separator');
+add_filter('document_title_separator', 'custom_title_separator');
 
-// adminbarカスタマイズ
-function remove_adminbar_item($wp_admin_bar)
+/**
+ * remove adminbar items
+ *
+ * @param object $wp_admin_bar
+ * @return void
+ */
+function remove_adminbar_item(object $wp_admin_bar)
 {
     if (!is_admin()) {
         $wp_admin_bar->remove_node('wp-logo');
@@ -60,7 +87,11 @@ function remove_adminbar_item($wp_admin_bar)
 }
 add_action('admin_bar_menu', 'remove_adminbar_item', 999);
 
-// ウィジェット登録
+/**
+ * widgets init
+ *
+ * @return void
+ */
 function arphabet_widgets_init()
 {
     register_sidebar([
@@ -74,15 +105,23 @@ function arphabet_widgets_init()
 }
 add_action('widgets_init', 'arphabet_widgets_init');
 
-// メニュー登録
-function register_my_menu()
+/**
+ * register menu
+ *
+ * @return void
+ */
+function register_custom_menu()
 {
     register_nav_menu('header-menu', __('ヘッダーメニュー'));
 }
-add_action('init', 'register_my_menu');
+add_action('init', 'register_custom_menu');
 
-// load css
-function my_template_css()
+/**
+ * load theme css
+ *
+ * @return void
+ */
+function load_theme_css()
 {
     wp_enqueue_style(
         'google-fonts',
@@ -98,10 +137,14 @@ function my_template_css()
         filemtime(get_theme_file_path('dist/css/app.css'))
     );
 }
-add_action('wp_enqueue_scripts', 'my_template_css');
+add_action('wp_enqueue_scripts', 'load_theme_css');
 
-// load js
-function add_my_scripts()
+/**
+ * load theme scripts
+ *
+ * @return void
+ */
+function load_theme_scripts()
 {
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', [], '3.6.0', true);
@@ -114,9 +157,13 @@ function add_my_scripts()
         true
     );
 }
-add_action('wp_enqueue_scripts', 'add_my_scripts');
+add_action('wp_enqueue_scripts', 'load_theme_scripts');
 
-// ユーザーID取得を防ぐためのリダイレクト
+/**
+ * shutout author query
+ *
+ * @return void
+ */
 function shut_author_query()
 {
     if (preg_match('/author=([0-9]*)/i', $_SERVER['QUERY_STRING'])) {
