@@ -39,7 +39,7 @@ add_action('init', 'custom_wp_head_remove_action');
  */
 function custom_template_redirect_remove_action()
 {
-    remove_action('template_redirect', 'rest_output_link_header');
+    remove_action('template_redirect', 'rest_output_link_header', 11);
 }
 add_action('init', 'custom_template_redirect_remove_action');
 
