@@ -58,7 +58,7 @@ add_action('init', 'custom_wp_print_styles_remove_action');
  * custom title separator
  *
  * @param string $sep
- * @return void
+ * @return string
  */
 function custom_title_separator(string $sep)
 {

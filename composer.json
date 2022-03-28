@@ -1,0 +1,10 @@
+{
+  "require-dev": {
+    "szepeviktor/phpstan-wordpress": "^1.0"
+  },
+  "scripts": {
+    "code-analysis": [
+      "./vendor/bin/phpstan analyse --memory-limit=2G"
+    ]
+  }
+}
