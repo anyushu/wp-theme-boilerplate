@@ -1,0 +1,12 @@
+{
+  "require-dev": {
+    "szepeviktor/phpstan-wordpress": "^1.0",
+    "friendsofphp/php-cs-fixer": "^3.8"
+  },
+  "scripts": {
+    "code-analysis": [
+      "./vendor/bin/php-cs-fixer fix",
+      "./vendor/bin/phpstan analyse --memory-limit=2G"
+    ]
+  }
+}
