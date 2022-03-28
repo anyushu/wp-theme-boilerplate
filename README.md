@@ -7,11 +7,15 @@
 3. PostCSS
 4. Prettier
 5. Sass
+6. PHP CS Fixer
+7. PHPStan
 
 ## Getting Started
 
 ```:bash
-yarn
-
+yarn install
 yarn watch or dev
+
+composer install
+composer code-analysis
 ```
