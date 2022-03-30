@@ -164,3 +164,5 @@ function shut_author_query()
     }
 }
 add_action('init', 'shut_author_query');
+
+require_once get_theme_file_path('/functions/admin/theme-setting.php');
