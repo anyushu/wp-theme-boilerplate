@@ -2,5 +2,5 @@
 /vendor
 /build
 /dist
-
+.php-cs-fixer.cache
 *.DS_Store

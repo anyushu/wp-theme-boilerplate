@@ -38,15 +38,14 @@ add_action('admin_init', 'register_theme_setting');
  */
 function add_admin_theme_setting_page()
 {
-?>
+    ?>
     <div class="wrap">
         <h1>テーマ設定</h1>
         <form method="post" action="options.php">
             <?php
             settings_errors();
-            settings_fields('theme-setting-group');
-            do_settings_sections('theme-setting-group');
-            ?>
+    settings_fields('theme-setting-group');
+    do_settings_sections('theme-setting-group'); ?>
             <h2 class="title">アクセス解析</h2>
             <table class="form-table">
                 <tbody>
