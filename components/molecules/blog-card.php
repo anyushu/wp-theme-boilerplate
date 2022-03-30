@@ -1,4 +1,4 @@
-<article class="bg-white shadow border rounded-lg">
+<article class="bg-white shadow border rounded-lg mb-6 md:mb-0">
     <a href="<?php the_permalink(); ?>" class="block p-5">
         <p class="font-bold text-2xl mb-2"><?php the_title(); ?></p>
         <?php if (get_the_excerpt()) : ?>
