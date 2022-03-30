@@ -1,4 +1,4 @@
-<?php if (get_option('ga-id') !== null): ?>
+<?php if (get_option('ga-id')): ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-<?php echo get_option('ga-id'); ?>"></script>
 <script>
