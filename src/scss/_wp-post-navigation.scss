@@ -1,5 +1,7 @@
-.wp-post-nav-links {
-  .post-page-numbers {
+.wp-post-nav-links,
+.nav-links {
+  .post-page-numbers,
+  .page-numbers {
     display: block;
     width: 2rem;
     height: 2rem;
@@ -12,5 +14,16 @@
     &:hover {
       background-color: rgb(209, 213, 219);
     }
+    &.next,
+    &.prev {
+      width: auto;
+      padding: 0 0.5rem;
+    }
   }
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
