@@ -1,0 +1,16 @@
+.wp-post-nav-links {
+  .post-page-numbers {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    margin: 0 0.25rem;
+    &.current,
+    &:hover {
+      background-color: rgb(209, 213, 219);
+    }
+  }
+}
