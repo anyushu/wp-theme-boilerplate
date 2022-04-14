@@ -8,6 +8,9 @@
                         <?php get_template_part('components/molecules/blog-card'); ?>
                     <?php endwhile; ?>
                 </div>
+                <div class="posts-pagination mt-12">
+                    <?php the_posts_pagination(); ?>
+                </div>
             </section>
             <?php get_sidebar(); ?>
         </div>
