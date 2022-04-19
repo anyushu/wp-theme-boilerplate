@@ -17,6 +17,8 @@
 
     <?php get_template_part('components/atoms/gtm-body'); ?>
 
-    <?php get_template_part('components/organisms/header'); ?>
+    <header id="header">
+        <?php get_template_part('components/organisms/navigation-bar'); ?>
+    </header>
 
     <main>

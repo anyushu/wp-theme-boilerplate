@@ -1,6 +1,6 @@
 <?php
 
-get_header();
+get_template_part('components/templates/header');
 
 if (is_404()) {
     get_template_part('pages/404');
@@ -12,4 +12,4 @@ if (is_404()) {
     get_template_part('pages/index');
 }
 
-get_footer();
+get_template_part('components/templates/footer');

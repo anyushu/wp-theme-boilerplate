@@ -16,7 +16,7 @@
                     <?php comments_template(); ?>
                 <?php endif; ?>
             </div>
-            <?php get_sidebar(); ?>
+            <?php get_template_part('components/templates/sidebar'); ?>
         </div>
     </div>
 </div>
